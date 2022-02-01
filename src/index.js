@@ -14,7 +14,7 @@ todoButton.addEventListener('click', addTodo);
 function addTodo(event) {
     event.preventDefault();
     const todoContainer = document.createElement('li');
-    todoContainer.classList.add("todo-container");
+    todoContainer.classList.add("todo-item");
 
     const todoText = document.createElement('span');
     todoText.innerText = 'test text';

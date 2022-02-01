@@ -7,6 +7,8 @@
 :root {
     --yellow: #f6d365;
     --peach: #fda085;
+    --orange: #ff6f47;
+    --green: rgb(73,204,73);
 }
 
 body {
@@ -22,28 +24,82 @@ header {
     margin-bottom: 1.5rem;
 }
 
-header, form {
+main, header, .todo-header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-form input, form button {
+form {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-header input, .todo-header button {
     padding: .5rem;
     font-size: 2rem;
     border: none;
     background: white;
 }
 
-form button {
+.todo-header button {
     color: var(--peach);
     background: white;
     cursor: pointer;
     transition: all .3s ease;
 }
 
-form button:hover {
+.todo-header button:hover {
     background: var(--peach);
     color: white;
 }
 
+.todo-container {
+    margin-top: 5rem;
+    width: 100%;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.todo-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    color: black;
+    margin-bottom: .5rem;
+    padding-left: .5rem;
+}
+
+.todo-list .todo-item:last-child {
+    margin: 0;
+}
+
+.todo-text {
+    font-size: 1.5rem;
+    flex: 1;
+}
+
+.todo-check-button, .todo-remove-button {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.todo-check-button {
+    margin-left: .5rem;
+    background: var(--green);
+}
+/*https://youtu.be/Ttf3CEsEwMQ?t=1540*/
