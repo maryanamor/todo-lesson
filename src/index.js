@@ -51,7 +51,7 @@ function addTodo(event) {
     const checkButton = document.createElement('button');
     checkButton.innerHTML = '<i class="fas fa-check"></i>';
     checkButton.classList.add('todo-check-button');
-    checkButton.addEventListener('click', toggleCheckButton);
+    checkButton.addEventListener('click', toggleCheckButton(todoItem));
     todoItem.appendChild(checkButton);
 
     // Create and add Remove button
@@ -72,6 +72,9 @@ function removeTodoItem(todoItem) {
     return () => todoItem.remove();
 }
 
-function toggleCheckButton(e) {
-    e.preventDefault();
+function toggleCheckButton(todoItem) {
+    return (e) => {
+        e.preventDefault();
+        todoItem.classList.toggle('todo-item_completed')
+    }
 }

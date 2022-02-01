@@ -99,6 +99,7 @@ form {
     color: black;
     margin-bottom: .5rem;
     padding-left: .5rem;
+    transition: all .5s ease-in-out;
 }
 
 .todo-list .todo-item:last-child {
@@ -123,4 +124,8 @@ form {
     margin-left: .5rem;
     background: var(--green);
 }
-/*https://youtu.be/Ttf3CEsEwMQ?t=1540*/
+
+.todo-item_completed {
+    text-decoration: line-through;
+    opacity: .5;
+}
