@@ -102,10 +102,6 @@ form {
     transition: all .5s ease-in-out;
 }
 
-.todo-list .todo-item:last-child {
-    margin: 0;
-}
-
 .todo-text {
     font-size: 1.5rem;
     flex: 1;
@@ -128,4 +124,9 @@ form {
 .todo-item_completed {
     text-decoration: line-through;
     opacity: .5;
+}
+
+.todo-item_fall {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
 }

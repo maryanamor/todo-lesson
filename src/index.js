@@ -69,7 +69,13 @@ function addTodo(event) {
 }
 
 function removeTodoItem(todoItem) {
-    return () => todoItem.remove();
+    return (e) => {
+        e.preventDefault();
+        todoItem.classList.add('todo-item_fall');
+        todoItem.addEventListener('transitionend', function () {
+            todoItem.remove();
+        });
+    };
 }
 
 function toggleCheckButton(todoItem) {
