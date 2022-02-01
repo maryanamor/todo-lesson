@@ -8,30 +8,41 @@ const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 
-// Event listeners
 todoButton.addEventListener('click', addTodo);
 
 function addTodo(event) {
     event.preventDefault();
-    const todoContainer = document.createElement('li');
-    todoContainer.classList.add("todo-item");
+
+    console.log(event)
+    const todoItem = document.createElement('li');
+    todoItem.classList.add("todo-item");
 
     const todoText = document.createElement('span');
     todoText.innerText = todoInput.value;
     todoText.classList.add('todo-text');
-    todoContainer.appendChild(todoText);
+    todoItem.appendChild(todoText);
 
     const checkButton = document.createElement('button');
     checkButton.innerHTML = '<i class="fas fa-check"></i>';
     checkButton.classList.add('todo-check-button');
-    todoContainer.appendChild(checkButton);
+    checkButton.addEventListener('click', toggleCheckButton);
+    todoItem.appendChild(checkButton);
 
     const removeButton = document.createElement('button');
     removeButton.innerHTML = '<i class="fas fa-trash"></i>';
     removeButton.classList.add('todo-remove-button');
-    todoContainer.appendChild(removeButton);
+    removeButton.addEventListener('click', removeTodoItem(todoItem))
+    todoItem.appendChild(removeButton);
 
-    todoList.appendChild(todoContainer);
+    todoList.appendChild(todoItem);
 
     todoInput.value = '';
+}
+
+function removeTodoItem(todoItem) {
+    return () => todoItem.remove();
+}
+
+function toggleCheckButton(e) {
+    e.preventDefault();
 }
