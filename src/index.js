@@ -17,7 +17,7 @@ function addTodo(event) {
     todoContainer.classList.add("todo-item");
 
     const todoText = document.createElement('span');
-    todoText.innerText = 'test text';
+    todoText.innerText = todoInput.value;
     todoText.classList.add('todo-text');
     todoContainer.appendChild(todoText);
 
@@ -32,4 +32,6 @@ function addTodo(event) {
     todoContainer.appendChild(removeButton);
 
     todoList.appendChild(todoContainer);
+
+    todoInput.value = '';
 }
