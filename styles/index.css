@@ -9,6 +9,7 @@
     --peach: #fda085;
     --orange: #ff6f47;
     --green: rgb(73,204,73);
+    --disabled: #BFBFBF;
 }
 
 body {
@@ -37,23 +38,43 @@ form {
     align-items: center;
 }
 
-.todo-header input, .todo-header button {
+.todo-header input, .todo-button {
     padding: .5rem;
     font-size: 2rem;
     border: none;
     background: white;
 }
 
-.todo-header button {
+.todo-button {
     color: var(--peach);
     background: white;
     cursor: pointer;
     transition: all .3s ease;
 }
 
-.todo-header button:hover {
+.todo-button:hover {
     background: var(--peach);
     color: white;
+}
+
+.todo-button_disabled {
+    pointer-events: none;
+    color: var(--disabled);
+}
+
+.todo-header {
+    position: relative;
+}
+
+.todo-helper {
+    position: absolute;
+    left: 0;
+    bottom: -1.0rem;
+    visibility: hidden;
+}
+
+.todo-helper_visible {
+    visibility: visible;
 }
 
 .todo-container {
