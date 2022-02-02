@@ -1,53 +1,56 @@
-import '../styles/index.css'
-import '../index.html'
+import "../styles/index.css";
+import "../index.html";
 
-import {getTodoItem} from "./addTodoItem";
-import { saveTodoToSStorage, getTodosFromSStorage} from "./sessionStorage";
-import {filterTodoItems} from "./filterTodoItems";
-import {getTodoInputItems, validateTodoInput} from "./todoInput";
+import { getTodoItem } from "./addTodoItem";
+import { saveTodoToSStorage, getTodosFromSStorage } from "./sessionStorage";
+import { filterTodoItems } from "./filterTodoItems";
+import {
+  clearTodoInput,
+  getTodoInputItems,
+  validateTodoInput,
+} from "./todoInput";
 
-const todoInputWrapper = document.querySelector('.todo-input-wrapper');
-const {todoInput,
-    todoButton,} = getTodoInputItems(todoInputWrapper)
-const todoList = document.querySelector('.todo-list');
-const todoSelect = document.querySelector('.todo-select');
+const todoInputWrapper = document.querySelector(".todo-input-wrapper");
+const { todoInput, todoButton } = getTodoInputItems(todoInputWrapper);
+const todoList = document.querySelector(".todo-list");
+const todoSelect = document.querySelector(".todo-select");
 
-document.addEventListener('DOMContentLoaded', onDOMLoaded);
-todoInput.addEventListener('input', validateTodoInput)
-todoButton.addEventListener('click', addTodo);
-todoSelect.addEventListener('change', filterTodos);
+document.addEventListener("DOMContentLoaded", onDOMLoaded);
+todoInput.addEventListener("input", validateTodoInput);
+todoButton.addEventListener("click", addTodo);
+todoSelect.addEventListener("change", filterTodos);
 
 function onDOMLoaded() {
-    renderTodosFromSStorage();
-    validateTodoInput(todoInputWrapper);
+  renderTodosFromSStorage();
+  validateTodoInput(todoInputWrapper);
 }
 
 function renderTodosFromSStorage() {
-    let todos = getTodosFromSStorage()
+  let todos = getTodosFromSStorage();
 
-    todos.forEach(todoValue => {
-        const todoItem = getTodoItem(todoValue);
+  todos.forEach((todoValue) => {
+    const todoItem = getTodoItem(todoValue);
 
-        // Add todo item to list
-        todoList.appendChild(todoItem);
-    })
+    // Add todo item to list
+    todoList.appendChild(todoItem);
+  });
 }
 
 function addTodo(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    saveTodoToSStorage(todoInput.value);
+  saveTodoToSStorage(todoInput.value);
 
-    const todoItem = getTodoItem(todoInput.value);
-    todoList.appendChild(todoItem);
+  const todoItem = getTodoItem(todoInput.value);
+  todoList.appendChild(todoItem);
 
-    clearTodoInput(todoInputWrapper);
+  clearTodoInput(todoInputWrapper);
 }
 
 function filterTodos(e) {
-    const todoItems = todoList.childNodes;
+  const todoItems = todoList.childNodes;
 
-    filterTodoItems(todoItems, e.target.value);
+  filterTodoItems(todoItems, e.target.value);
 }
 
 // TODO fix bugs:
