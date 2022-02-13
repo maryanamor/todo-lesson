@@ -29,7 +29,6 @@ function onDOMLoaded() {
 function renderTodosFromSStorage() {
   let todos = getTodosFromSStorage();
 
-  console.log("todos.length", todos.length);
   if (todos.length === 0) {
     todoSelectWrapper.classList.add("todo-select-wrapper_disabled"); // 1) selector disabled when empty todos
   }
@@ -44,18 +43,21 @@ function renderTodosFromSStorage() {
 function addTodo(event) {
   event.preventDefault();
 
-  saveTodoToSStorage(todoInput.value);
+  if (todoInput.value.length >= 3) {
+    // 2) add condition to check input value when press Enter
+    saveTodoToSStorage(todoInput.value);
 
-  const todoItem = getTodoItem(todoInput.value);
-  todoList.appendChild(todoItem);
+    const todoItem = getTodoItem(todoInput.value);
+    todoList.appendChild(todoItem);
 
-  const todoItems = todoList.childNodes;
+    const todoItems = todoList.childNodes;
 
-  if (todoItems.length) {
-    todoSelectWrapper.classList.remove("todo-select-wrapper_disabled"); // 1) selector visible when have todos
+    if (todoItems.length) {
+      todoSelectWrapper.classList.remove("todo-select-wrapper_disabled"); // 1) selector visible when have todos
+    }
+
+    clearTodoInput(todoInputWrapper);
   }
-
-  clearTodoInput(todoInputWrapper);
 }
 
 function filterTodos(e) {
