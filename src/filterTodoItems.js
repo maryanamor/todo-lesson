@@ -1,4 +1,4 @@
-const SELECT_OPTIONS = {
+export const SELECT_OPTIONS = {
   COMPLETED: "completed",
   UNCOMPLETED: "uncompleted",
   ALL: "all",

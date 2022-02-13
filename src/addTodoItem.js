@@ -1,4 +1,4 @@
-import { removeTodoFromSStorage } from "./sessionStorage";
+import { removeTodoFromSStorage, updateTodoToSStorage } from "./sessionStorage";
 
 export const getTodoItem = (text) => {
   // Create Todo Item
@@ -7,7 +7,7 @@ export const getTodoItem = (text) => {
 
   // Create and add Todo Text
   const todoText = document.createElement("span");
-  todoText.innerText = text;
+  todoText.innerText = text.name ?? text;
   todoText.classList.add("todo-text");
   todoItem.appendChild(todoText);
 
@@ -42,6 +42,12 @@ function removeTodoItem(todoItem) {
 function toggleCheckButton(todoItem) {
   return (e) => {
     e.preventDefault();
-    todoItem.classList.toggle("todo-item_completed");
+    if (todoItem.classList.contains("todo-item_completed")) {
+      updateTodoToSStorage(todoItem, "uncompleted");
+      todoItem.classList.remove("todo-item_completed");
+    } else {
+      updateTodoToSStorage(todoItem, "completed");
+      todoItem.classList.add("todo-item_completed");
+    }
   };
 }

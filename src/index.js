@@ -3,7 +3,7 @@ import "../index.html";
 
 import { getTodoItem } from "./addTodoItem";
 import { saveTodoToSStorage, getTodosFromSStorage } from "./sessionStorage";
-import { filterTodoItems } from "./filterTodoItems";
+import { filterTodoItems, SELECT_OPTIONS } from "./filterTodoItems";
 import {
   clearTodoInput,
   getTodoInputItems,
@@ -49,9 +49,15 @@ function renderTodosFromSStorage() {
 function addTodo(event) {
   event.preventDefault();
 
+  // 2) add condition to check input value when press Enter
   if (todoInput.value.length >= 3) {
-    // 2) add condition to check input value when press Enter
-    saveTodoToSStorage(todoInput.value);
+    // 4) Save to session storage with TODO with status
+    const newToDo = {
+      name: todoInput.value,
+      status: SELECT_OPTIONS.UNCOMPLETED,
+    };
+
+    saveTodoToSStorage(newToDo);
 
     const todoItem = getTodoItem(todoInput.value);
     todoList.appendChild(todoItem);
