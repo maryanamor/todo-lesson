@@ -14,9 +14,10 @@ const todoInputWrapper = document.querySelector(".todo-input-wrapper");
 const { todoInput, todoButton } = getTodoInputItems(todoInputWrapper);
 const todoList = document.querySelector(".todo-list");
 const todoSelect = document.querySelector(".todo-select");
+const todoSelectWrapper = document.querySelector(".todo-select-wrapper");
 
 document.addEventListener("DOMContentLoaded", onDOMLoaded);
-todoInput.addEventListener("input", validateTodoInput);
+todoInput.addEventListener("input", () => validateTodoInput(todoInputWrapper));
 todoButton.addEventListener("click", addTodo);
 todoSelect.addEventListener("change", filterTodos);
 
@@ -28,9 +29,13 @@ function onDOMLoaded() {
 function renderTodosFromSStorage() {
   let todos = getTodosFromSStorage();
 
+  console.log("todos.length", todos.length);
+  if (todos.length === 0) {
+    todoSelectWrapper.classList.add("todo-select-wrapper_disabled"); // 1) selector disabled when empty todos
+  }
+
   todos.forEach((todoValue) => {
     const todoItem = getTodoItem(todoValue);
-
     // Add todo item to list
     todoList.appendChild(todoItem);
   });
@@ -43,6 +48,12 @@ function addTodo(event) {
 
   const todoItem = getTodoItem(todoInput.value);
   todoList.appendChild(todoItem);
+
+  const todoItems = todoList.childNodes;
+
+  if (todoItems.length) {
+    todoSelectWrapper.classList.remove("todo-select-wrapper_disabled"); // 1) selector visible when have todos
+  }
 
   clearTodoInput(todoInputWrapper);
 }

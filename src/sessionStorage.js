@@ -2,6 +2,7 @@ const TODOS = "todos";
 
 export function removeTodoFromSStorage(todoItem) {
   let todos = getTodosFromSStorage();
+  const todoSelectWrapper = document.querySelector(".todo-select-wrapper");
 
   const todoText = Array.from(todoItem.childNodes).find((node) =>
     node.classList.contains("todo-text")
@@ -9,6 +10,9 @@ export function removeTodoFromSStorage(todoItem) {
 
   if (todoText) {
     const filtredTodos = todos.filter((item) => item !== todoText.innerText);
+    if (filtredTodos.length === 0) {
+      todoSelectWrapper.classList.add("todo-select-wrapper_disabled"); //selector disabled when empty todos
+    }
     sessionStorage.setItem(TODOS, JSON.stringify(filtredTodos));
   }
 }
