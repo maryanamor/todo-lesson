@@ -8,10 +8,12 @@ import {
   clearTodoInput,
   getTodoInputItems,
   validateTodoInput,
+  onFocusInput,
 } from "./todoInput";
 
 const todoInputWrapper = document.querySelector(".todo-input-wrapper");
-const { todoInput, todoButton } = getTodoInputItems(todoInputWrapper);
+const { todoInput, todoButton, todoHelper } =
+  getTodoInputItems(todoInputWrapper);
 const todoList = document.querySelector(".todo-list");
 const todoSelect = document.querySelector(".todo-select");
 const todoSelectWrapper = document.querySelector(".todo-select-wrapper");
@@ -20,6 +22,10 @@ document.addEventListener("DOMContentLoaded", onDOMLoaded);
 todoInput.addEventListener("input", () => validateTodoInput(todoInputWrapper));
 todoButton.addEventListener("click", addTodo);
 todoSelect.addEventListener("change", filterTodos);
+todoInput.addEventListener("focus", () => onFocusInput(todoInputWrapper));
+todoInput.addEventListener("blur", () => {
+  todoHelper.classList.remove("todo-helper_visible"); // 3) delete helper info
+});
 
 function onDOMLoaded() {
   renderTodosFromSStorage();

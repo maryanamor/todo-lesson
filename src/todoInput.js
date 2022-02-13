@@ -19,7 +19,6 @@ export function validateTodoInput(todoInputWrapper) {
     todoHelper.classList.remove("todo-helper_visible");
   } else {
     todoButton.classList.add("todo-button_disabled");
-    todoHelper.classList.add("todo-helper_visible");
   }
 }
 
@@ -29,5 +28,11 @@ export function clearTodoInput(todoInputWrapper) {
 
   todoInput.value = "";
   todoButton.classList.add("todo-button_disabled");
+  todoHelper.classList.add("todo-helper_visible");
+}
+
+// When on focus show helper info
+export function onFocusInput(todoInputWrapper) {
+  const { todoHelper } = getTodoInputItems(todoInputWrapper);
   todoHelper.classList.add("todo-helper_visible");
 }
